@@ -30,3 +30,23 @@
 *.exe
 *.out
 *.app
+
+# CodeLite specific
+*.project
+*.workspace
+.codelite/
+*.session
+*.tags*
+*.clang
+*.txt.user
+*.make
+Debug/
+Release/
+*.o.d
+*.stackdump
+Makefile
+*.mk
+build-Debug/
+compile_commands.json
+.clang-format
+.clangd
