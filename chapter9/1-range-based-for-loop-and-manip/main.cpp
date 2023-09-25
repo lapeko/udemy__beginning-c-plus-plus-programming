@@ -11,7 +11,8 @@ int main() {
     for (const auto &temp: temperatures)
         average += temp;
 
-    cout << setprecision(2);
+    average /= temperatures.size();
+    cout << fixed << setprecision(2);
     cout << "Average: " << average;
         
     return 0;
