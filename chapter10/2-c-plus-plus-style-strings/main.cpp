@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 int main() {
@@ -13,8 +14,8 @@ int main() {
     cout << endl << "Encrypring..." << endl;
     
     for (size_t i {secret_massage.size() - 1}; i + 1 != 0; i--) {
-        int index = alphabet.find(secret_massage[i]);
-        if (index == -1) continue;
+        size_t index = alphabet.find(secret_massage[i]);
+        if (index == string::npos) continue;
         secret_massage[i] = key[index];
     }
     
@@ -23,8 +24,8 @@ int main() {
     cout << "Decrypting..." << endl;
     
     for (size_t i {secret_massage.size() - 1}; i + 1 != 0; i--) {
-        int index = key.find(secret_massage[i]);
-        if (index == -1) continue;
+        size_t index = key.find(secret_massage[i]);
+        if (index == string::npos) continue;
         secret_massage[i] = alphabet[index];
     }
         
