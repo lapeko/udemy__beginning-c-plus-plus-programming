@@ -9,7 +9,7 @@ int main() {
     int integer2 {1};
     double decimal {1.23};
 
-    int *integerPointer {&integer};
+    int* integerPointer {&integer};
 
     cout << "integerPointer link: " << integerPointer << endl;
     cout << "integerPointer size: " << sizeof integerPointer << endl;
@@ -29,7 +29,7 @@ int main() {
     cout << "integerPointer value: " << *integerPointer << endl;
     printLine();
 
-    double *decimalPointer {&decimal};
+    double* decimalPointer {&decimal};
 
     cout << "decimalPointer size:" << sizeof decimalPointer << endl;
     cout << "decimalPointer link:" << decimalPointer << endl;

@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
     int size {};
-    int *arrPointer {nullptr};
+    int* arrPointer {nullptr};
 
     cout << "Input size of the array: " << endl;
     cin >> size;
