@@ -12,6 +12,8 @@ int main() {
     const int arr2[size2] {10, 20, 30};
     const int* result = applyAll(arr1, size1, arr2, size2);
     printArr(result, size1 * size2);
+
+    delete[] result;
 }
 
 int* applyAll(const int* const arr1, int size1, const int* const arr2, int size2 ) {
