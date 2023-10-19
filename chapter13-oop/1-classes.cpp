@@ -3,11 +3,12 @@
 using namespace std;
 
 class Player {
+public:
     string name;
     int health;
     int xp;
 
-    void talk(string);
+    void talk(string phrase) {cout << name << " says " << phrase;};
     bool is_dead();
 };
 
@@ -19,4 +20,7 @@ int main() {
     enemy = new Player();
 
     delete enemy;
+
+    hero.name = "Hero";
+    hero.talk("Hi");
 }
