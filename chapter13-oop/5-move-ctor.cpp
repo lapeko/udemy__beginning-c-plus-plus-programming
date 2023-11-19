@@ -9,6 +9,7 @@ private:
 public:
     explicit Move(int data_value): data(new int(data_value)) { cout << "Constructor for " << data_value << endl; }
     Move(const Move& copy): Move{*copy.data} { cout << "Copy constructor for " << *copy.data << endl; }
+    Move(Move&& copy) noexcept : data{copy.data} { copy.data = nullptr; cout << "Move constructor for " << *data << endl; }
     ~Move() {
         data == nullptr
             ? cout << "Destructor for nullptr" << endl
