@@ -7,9 +7,14 @@ class Move {
 private:
     int* data;
 public:
-    Move(int data_value): data(new int(data_value)) { cout << "Constructor for " << data_value << endl; }
-    Move(const Move& copy): data(new int(*copy.data)) { cout << "Copy constructor for " << *copy.data << endl; }
-    ~Move() {delete data; cout << "Destructor for " << endl; }
+    explicit Move(int data_value): data(new int(data_value)) { cout << "Constructor for " << data_value << endl; }
+    Move(const Move& copy): Move{*copy.data} { cout << "Copy constructor for " << *copy.data << endl; }
+    ~Move() {
+        data == nullptr
+            ? cout << "Destructor for nullptr" << endl
+            : cout << "Destructor for " << *data << endl;
+        delete data;
+    }
 };
 
 int main() {
