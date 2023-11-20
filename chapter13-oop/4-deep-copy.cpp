@@ -5,11 +5,11 @@ class Test {
 private:
     int* num;
 public:
-    explicit Test(int init_num): num( num = new int(init_num) ) {};
+    explicit Test(int init): num( num = new int(init) ) {};
     Test(const Test& src): Test(*src.num) {};
 
     int get_num() { return *num; }
-    void set_num(int new_num) { *num = new_num; }
+    void set_num(int num) { *this->num = num; }
 
     ~Test() {
         delete num;
