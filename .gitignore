@@ -52,3 +52,5 @@ build-Debug/
 compile_commands.json
 .clang-format
 .clangd
+
+cmake-build-debug/
