@@ -19,7 +19,7 @@ public:
 
     void view(std::string &&);
 
-    void print();
+    void print() const;
 };
 
 #endif //CHALLENGE_MOVIES_MOVIES_H
