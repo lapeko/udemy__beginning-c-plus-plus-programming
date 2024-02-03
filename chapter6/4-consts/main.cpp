@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -11,10 +12,12 @@ int main() {
     cout << "How many small room would you like to be cleaned ?" << endl;
     int numberSmallRooms {0};
     cin >> numberSmallRooms;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     
     cout << "How many large room would you like to be cleaned ?" << endl;
     int numberLargeRooms {0};
     cin >> numberLargeRooms;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     
     cout << "Estimate for carpet cleaning service";
     cout << "Number of small rooms: " << numberSmallRooms << endl;
@@ -25,10 +28,10 @@ int main() {
     
     const float cost = pricePerLargeRoom * numberLargeRooms + pricePerSmallRoom * numberSmallRooms;
     cout << "Cost: $" << cost << endl;
-    const float taxe = cost * taxesRate;
-    cout << "Taxe: $" << taxe << endl;
+    const float taxes = cost * taxesRate;
+    cout << "Taxes: $" << taxes << endl;
     cout << "==================================================" << endl;
-    cout << "Total estimate: $" << cost + taxe << endl;
+    cout << "Total estimate: $" << cost + taxes << endl;
     cout << "This estimate is valid for " << paymentIntervalDays << " days" << endl;
     
     return 0;
