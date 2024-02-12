@@ -5,7 +5,7 @@ class MyString {
     char *str;
 public:
     MyString();
-    MyString(char str[]); // or (char* str)
+    MyString(const char str[]); // or (char* str)
     MyString(const MyString& my_string);
     MyString(MyString&& my_string);
     MyString& operator=(const MyString& my_string);
