@@ -61,11 +61,23 @@ MyString& MyString::operator-() {
     return *temp;
 }
 
-MyString& MyString::operator+(const MyString &rhs) {
-    size_t size = strlen(str) + strlen(rhs.str) + 1;
+//MyString& MyString::operator+(const MyString &rhs) {
+//    size_t size = strlen(str) + strlen(rhs.str) + 1;
+//    char *buff = new char[size];
+//
+//    strcpy(buff, str);
+//    strcat(buff, rhs.str);
+//
+//    auto *temp = new MyString{buff};
+//    delete[] buff;
+//    return *temp;
+//}
+
+MyString operator+(const MyString &lhs, const MyString &rhs) {
+    size_t size = strlen(lhs.str) + strlen(rhs.str) + 1;
     char *buff = new char[size];
 
-    strcpy(buff, str);
+    strcpy(buff, lhs.str);
     strcat(buff, rhs.str);
 
     auto *temp = new MyString{buff};

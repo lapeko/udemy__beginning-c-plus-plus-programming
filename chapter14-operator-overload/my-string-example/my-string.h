@@ -13,7 +13,8 @@ public:
     MyString& operator=(const MyString &rhs);
     MyString& operator=(MyString &&rhs) noexcept;
     MyString& operator-();
-    MyString& operator+(const MyString &rhs);
+//    MyString& operator+(const MyString &rhs);
+    friend MyString operator+(const MyString &lhs, const MyString &rhs);
     bool operator==(const MyString &rhs);
 
     void display() const;
