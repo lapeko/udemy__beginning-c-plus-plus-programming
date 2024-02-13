@@ -1,10 +1,10 @@
 #include <iostream>
 #include "my-string.h"
 
-using namespace std;
-
 int main() {
-    MyString my_string("123");
-    my_string.display();
+    MyString str1 {"123"};
+    MyString str2;
+    str2 = std::move(str1);
+    std::cout << "Length:" << str2.get_length() << std::endl;
     return 0;
 }

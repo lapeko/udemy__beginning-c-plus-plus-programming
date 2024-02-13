@@ -5,17 +5,17 @@ class MyString {
     char *str;
 public:
     MyString();
-    MyString(const char str[]); // or (char* str)
-    MyString(const MyString& my_string);
-    MyString(MyString&& my_string);
+    explicit MyString(const char str[]); // or (char* str)
+    MyString(const MyString& rhs);
+    MyString(MyString &&rhs) noexcept;
+    ~MyString();
+
     MyString& operator=(const MyString& my_string);
-    MyString& operator=(MyString&& my_string);
+    MyString& operator=(MyString&& my_string) noexcept;
 
     void display() const;
-    int get_length();
-    const char* get_str() const;
-
-    ~MyString();
+    [[nodiscard]] size_t get_length() const;
+    [[nodiscard]] const char* get_str() const;
 };
 
 #endif
