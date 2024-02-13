@@ -12,6 +12,9 @@ public:
 
     MyString& operator=(const MyString &rhs);
     MyString& operator=(MyString &&rhs) noexcept;
+    MyString& operator-();
+    MyString& operator+(const MyString &rhs);
+    bool operator==(const MyString &rhs);
 
     void display() const;
     [[nodiscard]] size_t get_length() const;
