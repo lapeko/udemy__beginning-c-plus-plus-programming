@@ -17,7 +17,7 @@ MyString::MyString(const char *rhs): str{nullptr} {
     }
 }
 
-MyString::MyString(const MyString &rhs): str {rhs.str}  {
+MyString::MyString(const MyString &rhs) {
     if (this == &rhs)
         return;
     str = new char[strlen(rhs.str) + 1];
@@ -51,15 +51,31 @@ MyString& MyString::operator=(MyString &&rhs) noexcept {
     return *this;
 }
 
-MyString& MyString::operator-() {
-    size_t size = strlen(str) + 1;
-    char *buff = new char[size];
-    for (size_t i = 0; i < size; i++)
-        buff[i] = static_cast<char>(tolower(str[i]));
-    auto *temp = new MyString{buff};
-    delete[] buff;
-    return *temp;
+std::ostream& operator<<(std::ostream &os, const MyString &obj) {
+    os << obj.str;
+    return os;
 }
+
+std::istream& operator>>(std::istream &is, MyString &obj) {
+    char buff[1000];
+    is.getline(buff, 1000);
+    delete obj.str;
+
+    obj.str = new char[strlen(buff) + 1];
+    strcpy(obj.str, buff);
+
+    return is;
+};
+
+//MyString& MyString::operator-() {
+//    size_t size = strlen(str) + 1;
+//    char *buff = new char[size];
+//    for (size_t i = 0; i < size; i++)
+//        buff[i] = static_cast<char>(tolower(str[i]));
+//    auto *temp = new MyString{buff};
+//    delete[] buff;
+//    return *temp;
+//}
 
 //MyString& MyString::operator+(const MyString &rhs) {
 //    size_t size = strlen(str) + strlen(rhs.str) + 1;
@@ -71,6 +87,10 @@ MyString& MyString::operator-() {
 //    auto *temp = new MyString{buff};
 //    delete[] buff;
 //    return *temp;
+//}
+
+//bool MyString::operator==(const MyString &rhs) {
+//    return strcmp(str, rhs.str) == 0;
 //}
 
 MyString operator+(const MyString &lhs, const MyString &rhs) {
@@ -85,8 +105,21 @@ MyString operator+(const MyString &lhs, const MyString &rhs) {
     return *temp;
 }
 
-bool MyString::operator==(const MyString &rhs) {
-    return strcmp(str, rhs.str) == 0;
+MyString operator-(const MyString &rhs) {
+    size_t size = strlen(rhs.str) + 1;
+    char *buff = new char[size];
+
+    for (int i = 0; i < size; i++)
+        buff[i] = static_cast<char>(tolower(rhs.str[i]));
+
+    auto *temp = new MyString{buff};
+    delete[] buff;
+
+    return *temp;
+}
+
+bool operator==(const MyString &lhs, const MyString &rhs) {
+    return strcmp(lhs.str, rhs.str) == 0;
 }
 
 void MyString::display() const {
