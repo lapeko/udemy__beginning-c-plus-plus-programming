@@ -5,13 +5,13 @@ class MyString {
     char *str;
 public:
     MyString();
-    explicit MyString(const char str[]); // or (char* str)
+    MyString(const char *rhs); // or (char* str)
     MyString(const MyString& rhs);
     MyString(MyString &&rhs) noexcept;
     ~MyString();
 
-    MyString& operator=(const MyString& my_string);
-    MyString& operator=(MyString&& my_string) noexcept;
+    MyString& operator=(const MyString &rhs);
+    MyString& operator=(MyString &&rhs) noexcept;
 
     void display() const;
     [[nodiscard]] size_t get_length() const;

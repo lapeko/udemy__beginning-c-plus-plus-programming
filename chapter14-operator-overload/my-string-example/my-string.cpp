@@ -37,7 +37,7 @@ MyString::~MyString() {
     delete[] str;
 }
 
-MyString& MyString::operator=(const MyString &rhs) {
+MyString &MyString::operator=(const MyString &rhs) {
     std::cout << "Overloaded copy operator" << std::endl;
     if (this == &rhs) {
         return *this;
@@ -48,7 +48,7 @@ MyString& MyString::operator=(const MyString &rhs) {
     return *this;
 }
 
-MyString& MyString::operator=(MyString &&rhs) noexcept {
+MyString &MyString::operator=(MyString &&rhs) noexcept {
     std::cout << "Overloaded move operator" << std::endl;
     if (this != &rhs) {
         delete[] str;
