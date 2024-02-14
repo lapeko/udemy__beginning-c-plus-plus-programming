@@ -1,6 +1,7 @@
-#include "my_string.h"
 #include <cctype>
 #include <cstring>
+
+#include "my_string.h"
 
 MyString::MyString(): str{new char[]{'\0'}} {}
 
@@ -38,4 +39,24 @@ MyString &MyString::operator-() {
     auto new_my_str = new MyString{temp};
     delete[] temp;
     return *new_my_str;
+}
+
+bool MyString::operator==(const MyString &rhs) {
+    return strcmp(str, rhs.str) == 0;
+}
+
+bool MyString::operator!=(const MyString &rhs) {
+    return strcmp(str, rhs.str) != 0;
+}
+
+bool MyString::operator<(const MyString &rhs) {
+    return strcmp(str, rhs.str) < 0;
+}
+
+bool MyString::operator>(const MyString &rhs) {
+    return strcmp(str, rhs.str) > 0;
+}
+
+const char* MyString::get_string() {
+    return str;
 }

@@ -11,6 +11,12 @@ public:
     MyString(MyString&& rhs) noexcept;
 
     MyString& operator-();
+    bool operator==(const MyString& rhs);
+    bool operator!=(const MyString& rhs);
+    bool operator<(const MyString& rhs);
+    bool operator>(const MyString& rhs);
+
+    const char* get_string();
 };
 
 
