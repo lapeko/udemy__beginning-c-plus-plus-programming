@@ -14,20 +14,16 @@ MyString::MyString(char* s) {
     strcpy(str, s);
 }
 
-MyString::MyString(const MyString& rhs) {
-    if (this == &rhs)
-        return;
-    delete[] str;
+MyString::MyString(const MyString& rhs): str{nullptr} {
     if (rhs.str == nullptr) {
         str = new char[]{'\0'};
     } else {
-        str = new char[strlen(rhs.str)];
+        str = new char[strlen(rhs.str) + 1];
         strcpy(str, rhs.str);
     }
 }
 
-MyString::MyString(MyString&& rhs) noexcept {
-    str = rhs.str;
+MyString::MyString(MyString&& rhs) noexcept : str{rhs.str} {
     rhs.str = nullptr;
 }
 
@@ -35,38 +31,40 @@ MyString::~MyString() {
     delete[] str;
 }
 
-MyString& MyString::operator-() {
+MyString MyString::operator-() {
     size_t size = strlen(str) + 1;
     char* temp = new char[size];
     for (int i = 0; i < size; i++)
         temp[i] = static_cast<char>(tolower(str[i]));
-    auto new_my_str = new MyString{temp};
+    temp[size - 1] = '\0';
+    MyString new_my_str{temp};
     delete[] temp;
-    return *new_my_str;
+    return new_my_str;
 }
 
-bool MyString::operator==(const MyString& rhs) {
+bool MyString::operator==(const MyString& rhs) const {
     return strcmp(str, rhs.str) == 0;
 }
 
-bool MyString::operator!=(const MyString& rhs) {
+bool MyString::operator!=(const MyString& rhs) const {
     return strcmp(str, rhs.str) != 0;
 }
 
-bool MyString::operator<(const MyString& rhs) {
+bool MyString::operator<(const MyString& rhs) const {
     return strcmp(str, rhs.str) < 0;
 }
 
-bool MyString::operator>(const MyString& rhs) {
+bool MyString::operator>(const MyString& rhs) const {
     return strcmp(str, rhs.str) > 0;
 }
 
-MyString& MyString::operator+(const MyString& rhs) {
+MyString MyString::operator+(const MyString& rhs) const {
     size_t size = strlen(str) + strlen(rhs.str) + 1;
     char temp[size];
     strcpy(temp, str);
     strcat(temp, rhs.str);
-    return *(new MyString(temp));
+    temp[size - 1] = '\0';
+    return MyString{temp};
 }
 
 void MyString::operator+=(const MyString& rhs) {
@@ -76,13 +74,14 @@ void MyString::operator+=(const MyString& rhs) {
     temp.str = nullptr;
 }
 
-MyString& MyString::operator*(const unsigned int multiplier) {
+MyString MyString::operator*(const unsigned int multiplier) const {
     size_t size = strlen(str) * multiplier + 1;
     char temp[size];
     strcpy(temp, str);
     for (int i = 0; i < multiplier - 1; i++)
         strcat(temp, str);
-    return *(new MyString{temp});
+    temp[size - 1] = '\0';
+    return MyString{temp};
 }
 
 void MyString::operator*=(const unsigned int multiplier) {
@@ -96,7 +95,28 @@ void MyString::operator*=(const unsigned int multiplier) {
         strcat(str, temp);
 }
 
-const char* MyString::get_string() {
-    return str;
+MyString MyString::operator++() {
+    size_t size = strlen(str);
+    for (int i = 0; i < size; i++)
+        str[i] = static_cast<char>(toupper(str[i]));
+    return *this;
 }
 
+void MyString::operator++(int) {
+    ++(*this);
+}
+
+MyString MyString::operator--() {
+    size_t size = strlen(str);
+    for (int i = 0; i < size; i++)
+        str[i] = static_cast<char>(tolower(str[i]));
+    return *this;
+}
+
+void MyString::operator--(int) {
+    --(*this);
+}
+
+const char* MyString::get_string() const {
+    return str;
+}
