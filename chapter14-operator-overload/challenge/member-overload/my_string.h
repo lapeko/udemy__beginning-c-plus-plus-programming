@@ -11,6 +11,7 @@ public:
     MyString(MyString&& rhs) noexcept ;
     ~MyString();
 
+    MyString& operator=(const MyString& rhs);
     MyString operator-();
     bool operator==(const MyString& rhs) const;
     bool operator!=(const MyString& rhs) const;
