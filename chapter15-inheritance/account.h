@@ -7,15 +7,16 @@
 
 class Account {
     friend std::ostream& operator<<(std::ostream& os, const Account& obj);
-    static constexpr const char* def_name = "Unnamed account";
-    static constexpr const double def_balance = 0.0;
+    static constexpr const char* def_name{"Unnamed account"};
+    static constexpr const double def_balance{0.0};
 protected:
     std::string name;
     double balance;
 public:
     Account(std::string name = def_name, double balance = def_balance);
-    bool deposit(double amount);
-    bool withdraw(double amount);
+
+    virtual bool deposit(double amount);
+    virtual bool withdraw(double amount);
     [[nodiscard]] double get_balance() const;
 };
 

@@ -6,9 +6,13 @@
 
 
 class CheckingAccount: public Account {
+    friend std::ostream& operator<<(std::ostream& os, const CheckingAccount& obj);
+    static constexpr const char* def_name{"Unnamed checking account"};
+    static constexpr const double def_balance{0.0};
+    static constexpr const double per_check_fee{1.5};
 public:
-    CheckingAccount(const std::string& name, double balance);
-    bool withdraw(double amount);
+    CheckingAccount(std::string name = def_name, double balance = def_balance);
+    bool withdraw(double amount) override;
 };
 
 

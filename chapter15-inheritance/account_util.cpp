@@ -1,7 +1,5 @@
 #include <iostream>
 #include "account_util.h"
-#include "account.h"
-#include "saving_account.h"
 
 using namespace std;
 
@@ -35,5 +33,37 @@ void deposit(vector<SavingAccount>& accounts, double amount) {
 void withdraw(vector<SavingAccount>& accounts, double amount) {
     cout << "\n========================= Withdrawing from saving accounts =============================" << endl;
     for (SavingAccount& account : accounts)
+        cout << (account.withdraw(amount) ? "Withdrew " : "Failed withdrawal of ") << amount << " to " << account << endl;
+};
+
+void display(const vector<CheckingAccount>& accounts) {
+    cout << "\n========================= Checking accounts =============================" << endl;
+    for (const CheckingAccount& account : accounts)
+        cout << account << endl;
+};
+void deposit(vector<CheckingAccount>& accounts, double amount) {
+    cout << "\n========================= Depositing to checking accounts =============================" << endl;
+    for (CheckingAccount& account : accounts)
+        cout << (account.deposit(amount) ? "Deposited " : "Failed deposit of ") << amount << " to " << account << endl;
+};
+void withdraw(vector<CheckingAccount>& accounts, double amount) {
+    cout << "\n========================= Withdrawing from checking accounts =============================" << endl;
+    for (CheckingAccount& account : accounts)
+        cout << (account.withdraw(amount) ? "Withdrew " : "Failed withdrawal of ") << amount << " to " << account << endl;
+};
+
+void display(const vector<TrustAccount>& accounts) {
+    cout << "\n========================= TrustAccount accounts =============================" << endl;
+    for (const TrustAccount& account : accounts)
+        cout << account << endl;
+};
+void deposit(vector<TrustAccount>& accounts, double amount) {
+    cout << "\n========================= Depositing to trustAccount accounts =============================" << endl;
+    for (TrustAccount& account : accounts)
+        cout << (account.deposit(amount) ? "Deposited " : "Failed deposit of ") << amount << " to " << account << endl;
+};
+void withdraw(vector<TrustAccount>& accounts, double amount) {
+    cout << "\n========================= Withdrawing from trustAccount accounts =============================" << endl;
+    for (TrustAccount& account : accounts)
         cout << (account.withdraw(amount) ? "Withdrew " : "Failed withdrawal of ") << amount << " to " << account << endl;
 };
