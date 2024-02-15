@@ -1,24 +1,25 @@
 #ifndef NOT_MEMBER_OVERLOAD_MY_STRING_H
 #define NOT_MEMBER_OVERLOAD_MY_STRING_H
 
+#include <iostream>
 
 class MyString {
-
-
-    friend MyString operator-(const MyString& rhs);
-//    bool operator==(const MyString& rhs) const;
-//    bool operator!=(const MyString& rhs) const;
-//    bool operator<(const MyString& rhs) const;
-//    bool operator>(const MyString& rhs) const;
-//    MyString operator+(const MyString& rhs) const;
-//    void operator+=(const MyString& rhs);
-//    MyString operator*(unsigned int multiplier) const;
-//    void operator*=(unsigned int multiplier);
-//    MyString& operator++();
-//    void operator++(int);
-//    MyString operator--();
-//    void operator--(int);
-
+    friend MyString operator+(MyString& rhs);
+    friend MyString operator-(MyString& rhs);
+    friend bool operator==(const MyString& lhs, const MyString& rhs);
+    friend bool operator!=(const MyString& lhs, const MyString& rhs);
+    friend bool operator<(const MyString& lhs, const MyString& rhs);
+    friend bool operator>(const MyString& lhs, const MyString& rhs);
+    friend MyString operator+(const MyString& lhs, const MyString& rhs);
+    friend void operator+=(MyString& lhs, const MyString& rhs);
+    friend MyString operator*(const MyString& lhs, unsigned int multiplier);
+    friend void operator*=(MyString& lhs, unsigned int multiplier);
+    friend MyString operator++(MyString& rhs);
+    friend void operator++(MyString& lhs, int);
+    friend MyString operator--(MyString& rhs);
+    friend void operator--(MyString& lhs, int);
+    friend std::ostream& operator<<(std::ostream& os, const MyString& rhs);
+    friend std::istream& operator>>(std::istream& is, MyString& rhs);
 
     char* str;
 public:
