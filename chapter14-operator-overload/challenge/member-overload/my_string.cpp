@@ -45,6 +45,12 @@ MyString& MyString::operator=(const MyString& rhs) {
     return *this;
 }
 
+MyString& MyString::operator=(MyString&& rhs) noexcept {
+    str = rhs.str;
+    rhs.str = nullptr;
+    return *this;
+}
+
 MyString MyString::operator-() {
     size_t size = strlen(str) + 1;
     char* temp = new char[size];
