@@ -51,12 +51,11 @@ MyString& MyString::operator=(MyString&& rhs) noexcept {
     return *this;
 }
 
-MyString MyString::operator-() {
+MyString MyString::operator-() const {
     size_t size = strlen(str) + 1;
     char* temp = new char[size];
     for (int i = 0; i < size; i++)
         temp[i] = static_cast<char>(tolower(str[i]));
-    temp[size - 1] = '\0';
     MyString new_my_str{temp};
     delete[] temp;
     return new_my_str;
@@ -83,15 +82,11 @@ MyString MyString::operator+(const MyString& rhs) const {
     char temp[size];
     strcpy(temp, str);
     strcat(temp, rhs.str);
-    temp[size - 1] = '\0';
     return MyString{temp};
 }
 
 void MyString::operator+=(const MyString& rhs) {
-    MyString temp = *this + rhs;
-    delete[] this->str;
-    this->str = temp.str;
-    temp.str = nullptr;
+    *this = *this + rhs;
 }
 
 MyString MyString::operator*(const unsigned int multiplier) const {
@@ -105,17 +100,10 @@ MyString MyString::operator*(const unsigned int multiplier) const {
 }
 
 void MyString::operator*=(const unsigned int multiplier) {
-    size_t size = strlen(str) * multiplier + 1;
-    char temp[size];
-    strcpy(temp, str);
-    delete[] str;
-    str = new char[size];
-    strcpy(str, temp);
-    for (int i = 0; i < multiplier - 1; i++)
-        strcat(str, temp);
+    *this = *this * multiplier;
 }
 
-MyString MyString::operator++() {
+MyString& MyString::operator++() {
     size_t size = strlen(str);
     for (int i = 0; i < size; i++)
         str[i] = static_cast<char>(toupper(str[i]));

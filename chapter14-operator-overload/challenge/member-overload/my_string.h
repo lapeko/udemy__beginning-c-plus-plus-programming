@@ -13,7 +13,7 @@ public:
 
     MyString& operator=(const MyString& rhs);
     MyString& operator=(MyString&& rhs) noexcept;
-    MyString operator-();
+    MyString operator-() const;
     bool operator==(const MyString& rhs) const;
     bool operator!=(const MyString& rhs) const;
     bool operator<(const MyString& rhs) const;
@@ -22,12 +22,12 @@ public:
     void operator+=(const MyString& rhs);
     MyString operator*(unsigned int multiplier) const;
     void operator*=(unsigned int multiplier);
-    MyString operator++();
+    MyString& operator++();
     void operator++(int);
     MyString operator--();
     void operator--(int);
 
-    const char* get_string() const;
+    [[nodiscard]] const char* get_string() const;
 };
 
 
