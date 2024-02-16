@@ -4,9 +4,9 @@
 using namespace std;
 
 
-void display(const vector<IPrintable*>& accounts) {
+void display(const vector<Account*>& accounts) {
     cout << "\n========================= Accounts =============================" << endl;
-    for (IPrintable* account : accounts)
+    for (Account* account : accounts)
         cout << *account << endl;
 };
 void deposit(const vector<Account*>& accounts, double amount) {
