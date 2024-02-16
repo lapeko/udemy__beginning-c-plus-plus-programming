@@ -3,10 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include "i_printable.h"
 
 
-class Account {
-    friend std::ostream& operator<<(std::ostream& os, const Account& obj);
+class Account: public IPrintable {
     static constexpr const char* def_name{"Unnamed account"};
     static constexpr const double def_balance{0.0};
 protected:

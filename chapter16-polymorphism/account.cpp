@@ -4,10 +4,6 @@
 
 using namespace std;
 
-ostream& operator<<(ostream& os, const Account &obj) {
-    os << "[Account: " << obj.name << ": " << obj.balance << "]";
-    return os;
-}
 
 Account::Account(string name, double balance): name{std::move(name)}, balance{balance} {}
 

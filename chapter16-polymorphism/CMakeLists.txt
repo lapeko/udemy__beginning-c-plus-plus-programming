@@ -11,5 +11,4 @@ add_executable(chapter15_polymorphism
         saving_account.cpp
         trust_account.cpp
         i_printable.cpp
-        i_printable.h
 )

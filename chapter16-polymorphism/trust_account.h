@@ -6,7 +6,6 @@
 
 
 class TrustAccount: public SavingAccount {
-    friend std::ostream& operator<<(std::ostream& os, const TrustAccount& obj);
     static constexpr const char* def_name{"Unnamed trust account"};
     static constexpr const double def_balance{0.0};
     static constexpr const double def_int_rate{0.0};
@@ -14,6 +13,8 @@ class TrustAccount: public SavingAccount {
     static constexpr const double bonus{50};
     static constexpr const double max_withdraw_percent{20};
     unsigned int withdraw_available_amount{4};
+protected:
+    void print(std::ostream& os) override;
 public:
     TrustAccount(std::string name = def_name, double balance = def_balance, double int_rate = def_int_rate);
     bool deposit(double amount) override;

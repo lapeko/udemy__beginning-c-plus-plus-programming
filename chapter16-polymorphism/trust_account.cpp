@@ -5,11 +5,6 @@
 using namespace std;
 
 
-ostream& operator<<(ostream& os, const TrustAccount& obj) {
-    os << "[Trust account: " << obj.name << ": " << obj.balance << ", " << obj.int_rate << "%]";
-    return os;
-}
-
 TrustAccount::TrustAccount(string name, const double balance, const double int_rate)
     : SavingAccount(std::move(name), balance, int_rate) {
 }
@@ -29,4 +24,8 @@ bool TrustAccount::withdraw(const double amount) {
     }
     withdraw_available_amount--;
     return SavingAccount::withdraw(amount);
+}
+
+void TrustAccount::print(ostream &os) {
+    os << "[Trust account: " << name << ": " << balance << ", " << int_rate << "%]";
 }
