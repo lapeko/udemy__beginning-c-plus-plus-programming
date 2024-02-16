@@ -14,9 +14,10 @@ class TrustAccount: public SavingAccount {
     static constexpr const double max_withdraw_percent{20};
     unsigned int withdraw_available_amount{4};
 protected:
-    void print(std::ostream& os) override;
+    void print(std::ostream& os) const override;
 public:
     TrustAccount(std::string name = def_name, double balance = def_balance, double int_rate = def_int_rate);
+    ~TrustAccount() override;
     bool deposit(double amount) override;
     bool withdraw(double amount) override;
 };

@@ -1,7 +1,6 @@
 #ifndef CHAPTER15_INHERITANCE_SAVING_ACCOUNT_H
 #define CHAPTER15_INHERITANCE_SAVING_ACCOUNT_H
 
-#include <iostream>
 #include "account.h"
 
 
@@ -11,9 +10,10 @@ class SavingAccount: public Account {
     static constexpr const double def_int_rate{0.0};
 protected:
     double int_rate;
-    void print(std::ostream& os) override;
+    void print(std::ostream& os) const override;
 public:
     SavingAccount(std::string name = def_name, double balance = def_balance, double int_rate = def_int_rate);
+    ~SavingAccount() override;
     bool deposit(double amount) override;
     bool withdraw(double amount) override;
 };

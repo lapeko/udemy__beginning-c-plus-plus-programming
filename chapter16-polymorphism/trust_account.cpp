@@ -9,6 +9,10 @@ TrustAccount::TrustAccount(string name, const double balance, const double int_r
     : SavingAccount(std::move(name), balance, int_rate) {
 }
 
+TrustAccount::~TrustAccount() {
+    std::cout << "TrustAccount destructor" << std::endl;
+}
+
 bool TrustAccount::deposit(const double amount) {
     return SavingAccount::deposit(amount < min_bonus_deposit ? amount : amount + bonus);
 }
@@ -26,6 +30,6 @@ bool TrustAccount::withdraw(const double amount) {
     return SavingAccount::withdraw(amount);
 }
 
-void TrustAccount::print(ostream &os) {
+void TrustAccount::print(ostream &os) const {
     os << "[Trust account: " << name << ": " << balance << ", " << int_rate << "%]";
 }

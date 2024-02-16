@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 #include "saving_account.h"
 #include "trust_account.h"
@@ -8,10 +7,10 @@ using namespace std;
 
 int main() {
     vector<Account*> vec;
-    auto sa1 = new SavingAccount();
-    auto sa2 = new SavingAccount("Saving name", 2000);
-    auto ta1 = new TrustAccount();
-    auto ca1 = new CheckingAccount();
+    Account* sa1 = new SavingAccount();
+    Account* sa2 = new SavingAccount("Saving name", 2000);
+    Account* ta1 = new TrustAccount();
+    Account* ca1 = new CheckingAccount();
 
     vec.push_back(sa1);
     vec.push_back(sa2);
@@ -19,4 +18,9 @@ int main() {
     vec.push_back(ca1);
 
     display(vec);
+
+    delete sa1;
+    delete sa2;
+    delete ta1;
+    delete ca1;
 }
