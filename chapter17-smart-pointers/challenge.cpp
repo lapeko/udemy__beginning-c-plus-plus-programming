@@ -29,19 +29,20 @@ int main() {
 }
 
 unique_ptr<vector<shared_ptr<Test>>> make() {
-    return make_unique<vector<shared_ptr<Test>>>(vector<shared_ptr<Test>>{});
+    return make_unique<vector<shared_ptr<Test>>>();
 };
 
 void fill(vector<shared_ptr<Test>>& vec, int num) {
+    int user_input;
     for (int i = 0; i < num; i++) {
         cout << "Enter a value for " << i + 1 << " item: ";
-        int user_input;
         cin >> user_input;
-        vec.emplace_back(make_shared<Test>(user_input));
+        vec.push_back(make_shared<Test>(user_input));
     }
 }
 
 void display(const vector<shared_ptr<Test>>& vec) {
-    for (auto& test: vec)
+    cout << "Displaying vector data" << endl;
+    for (const auto& test: vec)
         cout << test->get_data() << endl;
 }
