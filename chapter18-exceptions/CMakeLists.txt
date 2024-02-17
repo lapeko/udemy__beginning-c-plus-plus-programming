@@ -11,4 +11,6 @@ add_executable(chapter18_exceptions
         i_printable.cpp
         saving_account.cpp
         trust_account.cpp
+        exceptions/illegal_balance_exception.cpp
+        exceptions/insufficient_funds_exception.cpp
 )

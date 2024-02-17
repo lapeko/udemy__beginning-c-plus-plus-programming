@@ -11,11 +11,15 @@ void display(const vector<Account*>& accounts) {
 };
 void deposit(const vector<Account*>& accounts, double amount) {
     cout << "\n========================= Depositing to accounts =============================" << endl;
-    for (auto account : accounts)
-        cout << (account->deposit(amount) ? "Deposited " : "Failed deposit of ") << amount << " to " << *account << endl;
+    for (auto account : accounts) {
+        account->deposit(amount);
+        cout << "Deposited " << amount << " to " << *account << endl;
+    }
 };
 void withdraw(const vector<Account*>& accounts, double amount) {
     cout << "\n========================= Withdrawing from accounts =============================" << endl;
-    for (auto account : accounts)
-        cout << (account->withdraw(amount) ? "Withdrew " : "Failed withdrawal of ") << amount << " to " << *account << endl;
+    for (auto account : accounts) {
+        account->withdraw(amount);
+        cout << "Withdrew " << amount << " to " << *account << endl;
+    }
 };

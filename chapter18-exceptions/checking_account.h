@@ -14,8 +14,8 @@ protected:
 public:
     CheckingAccount(std::string name = def_name, double balance = def_balance);
     ~CheckingAccount() override;
-    bool deposit(double amount) override;
-    bool withdraw(double amount) override;
+    void deposit(double amount) override;
+    void withdraw(double amount) override;
 };
 
 

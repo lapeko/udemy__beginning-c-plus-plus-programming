@@ -12,13 +12,13 @@ SavingAccount::~SavingAccount() {
     std::cout << "SavingAccount destructor" << std::endl;
 }
 
-bool SavingAccount::deposit(double amount) {
+void SavingAccount::deposit(double amount) {
     amount += amount * int_rate / 100;
-    return Account::deposit(amount);
+    Account::deposit(amount);
 }
 
-bool SavingAccount::withdraw(double amount) {
-    return Account::withdraw(amount);
+void SavingAccount::withdraw(double amount) {
+    Account::withdraw(amount);
 }
 
 void SavingAccount::print(ostream& os) const {

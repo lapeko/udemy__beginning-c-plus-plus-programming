@@ -18,8 +18,8 @@ protected:
 public:
     TrustAccount(std::string name = def_name, double balance = def_balance, double int_rate = def_int_rate);
     ~TrustAccount() override;
-    bool deposit(double amount) override;
-    bool withdraw(double amount) override;
+    void deposit(double amount) override;
+    void withdraw(double amount) override;
 };
 
 

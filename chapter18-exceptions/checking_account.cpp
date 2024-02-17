@@ -7,12 +7,12 @@ CheckingAccount::~CheckingAccount() {
     std::cout << "CheckingAccount destructor" << std::endl;
 }
 
-bool CheckingAccount::deposit(double amount) {
-    return Account::deposit(amount);
+void CheckingAccount::deposit(double amount) {
+    Account::deposit(amount);
 }
 
-bool CheckingAccount::withdraw(double amount) {
-    return Account::withdraw(amount + per_check_fee);
+void CheckingAccount::withdraw(double amount) {
+    Account::withdraw(amount + per_check_fee);
 }
 
 void CheckingAccount::print(std::ostream &os) const {
