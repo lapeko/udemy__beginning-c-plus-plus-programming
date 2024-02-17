@@ -22,7 +22,7 @@ struct Tour {
     vector<Country> countries;
 };
 
-void print_header();
+void print_header(const string& tour_name);
 void print_data(const string& country, const string& city, const int& population, const double& price);
 
 int main() {
@@ -57,7 +57,7 @@ int main() {
         },
     };
 
-    print_header();
+    print_header(tour.name);
     for (const Country &country : tour.countries) {
         string country_name = country.name;
         for (const City &city : country.cities) {
@@ -69,13 +69,14 @@ int main() {
     return 0;
 }
 
-void print_header() {
-    cout << setprecision(2) << fixed << left;
-    cout << setw(20) << "Country"
-         << setw(25) << "City"
-         << setw(10) << right << "Population"
-         << setw(15) << right << "Price" << "\n"
-         << setw(70) <<  setfill('-') << "" << setfill(' ') << endl;
+void print_header(const string& tour_name) {
+    cout << setprecision(2) << fixed;
+    cout << "\n" << setw((70 - static_cast<int>(tour_name.size())) / 2) << "" << tour_name << "\n"
+        << setw(20) << "Country"
+        << setw(25) << "City"
+        << setw(10) << right << "Population"
+        << setw(15) << right << "Price" << "\n"
+        << setw(70) <<  setfill('-') << "" << setfill(' ') << endl;
 };
 
 void print_data(const string& country, const string& city, const int& population, const double& price) {
