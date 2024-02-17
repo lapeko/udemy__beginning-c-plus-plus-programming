@@ -69,20 +69,26 @@ int main() {
     return 0;
 }
 
+int col1 = 20;
+int col2 = 25;
+int col3 = 10;
+int col4 = 15;
+int totl = col1 + col2 + col3 + col4;
+
 void print_header(const string& tour_name) {
     cout << setprecision(2) << fixed;
-    cout << "\n" << setw((70 - static_cast<int>(tour_name.size())) / 2) << "" << tour_name << "\n"
-        << setw(20) << "Country"
-        << setw(25) << "City"
-        << setw(10) << right << "Population"
-        << setw(15) << right << "Price" << "\n"
-        << setw(70) <<  setfill('-') << "" << setfill(' ') << endl;
+    cout << "\n" << setw((totl - static_cast<int>(tour_name.size())) / 2) << "" << tour_name << "\n"
+        << setw(col1) << "Country"
+        << setw(col2) << "City"
+        << setw(col3) << right << "Population"
+        << setw(col4) << right << "Price" << "\n"
+        << setw(totl) <<  setfill('-') << "" << setfill(' ') << endl;
 };
 
 void print_data(const string& country, const string& city, const int& population, const double& price) {
     cout << setprecision(2) << fixed << left;
-    cout << setw(20) << country
-        << setw(25) << city
-        << setw(10) << right << population
-        << setw(15) << right << price << endl;
+    cout << setw(col1) << country
+        << setw(col2) << city
+        << setw(col3) << right << population
+        << setw(col4) << right << price << endl;
 };
