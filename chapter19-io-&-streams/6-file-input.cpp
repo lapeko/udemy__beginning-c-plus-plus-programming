@@ -13,7 +13,6 @@ int main() {
     }
 
     string line;
-
     while (getline(text_file, line)) {
         cout << line << endl;
     }
@@ -24,7 +23,15 @@ int main() {
     while (text_file.get(c)) {
         cout << c;
     }
+    text_file.close();
 
+    cout << "\n==============================" << endl;
+    string name;
+    int num;
+    double d;
+    text_file.open("./text.txt");
+    while (text_file >> name >> num >> d)
+        cout << name << " | " << num << " | " << d << endl;
     text_file.close();
 
     return 0;
