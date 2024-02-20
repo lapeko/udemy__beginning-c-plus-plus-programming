@@ -7,7 +7,6 @@
 using namespace std;
 
 
-
 //void print_if(const vector<int>& numbers, bool (*predicate) (int)) {
 //    for (int num: numbers)
 //        if (predicate(num))
