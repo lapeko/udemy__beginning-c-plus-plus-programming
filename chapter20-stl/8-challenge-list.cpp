@@ -31,7 +31,7 @@ public:
     Song() = default;
     Song(string b, string n, int r): band(std::move(b)), name(std::move(n)), rating(r) {};
     bool operator<(const Song& rhs) const {return rating < rhs.rating;};
-    bool operator==(const Song& rhs) {return band == rhs.band && name == rhs.band && rating == rhs.rating;};
+    bool operator==(const Song& rhs) {return band == rhs.band && name == rhs.name && rating == rhs.rating;};
 };
 
 class Player {
@@ -71,7 +71,7 @@ public:
     };
     void play_prev() {
         this->current_song_it == this->playlist.begin()
-            ? this->current_song_it = --this->playlist.end()
+            ? this->current_song_it = prev(this->playlist.end())
             : this->current_song_it--;
         show_playing_song();
     };
@@ -94,22 +94,27 @@ class PlayerController {
         return false;
     };
     static Song build_song() {
-        bool correct = false;
-        string band;
-        string song;
-        int rating;
-        while (!correct) {
-            std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Enter a band:" << endl;
-            getline(cin, band);
-            cout << "Enter a song name:" << endl;
-            getline(cin, song);
+        string band, song;
+        int rating{0};
+
+        std::cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Enter a band:" << endl;
+        getline(cin, band);
+        cout << "Enter a song name:" << endl;
+        getline(cin, song);
+
+        while (true) {
             cout << "Enter rating (min: 1, max: 5):" << endl;
             cin >> rating;
 
-            if (!band.empty() && !song.empty() && rating >= 1 && rating <= 5) correct = true;
-            else cout << "Looks like you provided incorrect song data. PLease, try again" << endl;
-        };
+            if (cin.fail() || rating < 1 || rating > 5) {
+                cout << "Looks like you provided incorrect rating data. Please, try again." << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            } else break;
+        }
+
         return Song{band, song, rating};
     };
 public:
