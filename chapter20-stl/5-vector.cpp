@@ -36,5 +36,6 @@ int main() {
     // find and insert
     nums.insert(find(nums.begin(), nums.end(), 3), nums2.begin(), nums2.end());
     print_nums(nums);
+
     return 0;
 }
