@@ -10,6 +10,12 @@ using namespace std;
 
 const string file_path = "words.txt";
 
+string clean_string(string& word) {
+    string clean_word;
+    copy_if(word.cbegin(), word.cend(), back_inserter(clean_word), [](char c){return !ispunct(c);});
+    return clean_word;
+}
+
 int main() {
     ifstream text_file{file_path};
 
@@ -21,18 +27,13 @@ int main() {
     map<string, int> word_count_map;
     map<string, set<int>> word_position_map;
 
-    string word;
+    string dirty_word;
     int position{0};
-    while (text_file >> word) {
+    while (text_file >> dirty_word) {
+        string word = clean_string(dirty_word);
         auto it = word_count_map.find(word);
-        if (it == word_count_map.cend()) {
-            word_count_map.insert(pair<string, int>{word, 1});
-            word_position_map.insert(pair<string, set<int>>{word, set{position}});
-        } else {
-            it->second++;
-            auto position_it = word_position_map.find(word);
-            position_it->second.insert(position);
-        }
+        word_count_map[word]++;
+        word_position_map[word].insert(position);
         position++;
     }
 
@@ -40,11 +41,15 @@ int main() {
         cout << left << setw(20) << m.first << m.second << endl;
     });
 
+    cout << setfill('=') << setw(100) << "" << setfill(' ') << endl;
+
     for_each(word_position_map.begin(), word_position_map.end(), [](pair<const basic_string<char>, set<int>>& m){
         cout << left << setw(20) << m.first << ": [ ";
         for_each(m.second.begin(), m.second.end(), [](int pos){cout << pos << " ";});
         cout << "]" << endl;
     });
+
+    text_file.close();
 
     return 0;
 }
