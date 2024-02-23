@@ -20,10 +20,12 @@ int main() {
         int a{10};
         int b{20};
 
-        [=](int b) mutable { // [=] will capture everything by value
+        auto l = [=](int b) mutable { // [=] will capture everything by value
             a += b;
             cout << a << endl;
-        }(33);
+        };
+        l(33);
+        l(33); // Variable "a" was captured once during initialization and this call will change the variable again
         cout << "Will not be updated => " << a << endl;
 
         [&a](int b) mutable {
