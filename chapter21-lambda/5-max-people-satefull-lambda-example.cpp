@@ -17,8 +17,8 @@ class Person {
 public:
     Person() = default;
     explicit Person(string name, int age): name(std::move(name)), age{age} {};
-    bool operator<(const Person& rhs) {return name < rhs.name;};
-    bool operator==(const Person& rhs) {return name == rhs.name && age == rhs.age;};
+    bool operator<(const Person& rhs) const {return name < rhs.name;};
+    bool operator==(const Person& rhs) const {return name == rhs.name && age == rhs.age;};
     [[nodiscard]] int get_age() const {return age;};
 };
 
@@ -29,11 +29,13 @@ public:
     vector<Person> get_people_under(int age) {
         vector<Person> result;
         int count{0};
-        copy_if(people.cbegin(), people.cend(), back_inserter(result), [this, age, &count](const Person& p){
-            if (p.get_age() < age)
-                return this->max_people ? count++ < this->max_people : true;
-            return false;
-        });
+        for (const auto& p : people) {
+            if (p.get_age() > age)
+                continue;
+            result.push_back(p);
+            count++;
+            if (max_people && count >= max_people) break;
+        }
         return result;
     }
     void add_person(const string& name, int age) {people.emplace_back(name, age);};
